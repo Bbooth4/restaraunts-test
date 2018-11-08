@@ -71,6 +71,8 @@ in that verison.
 
 The table row would be a separate component which is rendered in the loop.
 
+I would added more comprehensive tests.
+
 I would improve the regex for checking keywords and the total return value at the
 /cuisine endpoint.
 
