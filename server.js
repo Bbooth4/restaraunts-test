@@ -9,6 +9,8 @@ app.use(cors(corsOptions));
 
 const PORT = 9004;
 
+app.get("/", (req, res) => res.json({success: 'success'}));
+
 app.get("/cuisine", async (req, res) => {
   const result = new Promise((r, rej) => {
     axios.get(req.query.url)
@@ -38,3 +40,5 @@ app.get("/cuisine", async (req, res) => {
 });
 
 app.listen(PORT, () => console.log('Listening on port ' + PORT));
+
+module.exports = { app };

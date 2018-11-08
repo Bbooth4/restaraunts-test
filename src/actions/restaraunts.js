@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const getCuisineType = (dispatch, data) => {
   data.restaurants.forEach((e, i) => {
@@ -15,7 +15,7 @@ const getCuisineType = (dispatch, data) => {
   });
 };
 
-export const getRestaraunts = params => {
+const getRestaraunts = params => {
   return dispatch => {
     axios.get(`http://opentable.herokuapp.com/api/restaurants?city=${params.city}`)
     .then(res => {
@@ -25,3 +25,6 @@ export const getRestaraunts = params => {
     .catch(err => console.log(err));
   };
 };
+
+// using es5 because of issues with mocha/testing
+module.exports = { getRestaraunts };
