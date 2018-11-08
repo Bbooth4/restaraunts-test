@@ -1,0 +1,39 @@
+:root {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  background: #f9ffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Ted Next';
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: #414042;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.g-white-link {
+  color: white;
+}
+
+a.g-blue-link {
+  color: #00A0B7;
+}
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+}
