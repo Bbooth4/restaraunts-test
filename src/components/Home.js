@@ -49,7 +49,7 @@ const rowAlt = {
 
 const rowData = { padding: '1rem' };
 
-const rowDataEnd = {
+const rowDataCenter = {
   padding: '1rem',
   textAlign: 'center'
 };
@@ -58,12 +58,20 @@ const label = {
   fontSize: '2.8rem'
 };
 
+const header = {
+  cursor: 'pointer'
+};
+
+const THeader = ({ text, onClick }) => (
+  <th style={header} onClick={onClick}>{text}</th>
+);
+
 class Home extends Component {
   state = {
-    city: ''
+    city: '',
+    filter: null,
+    restaraunts: []
   };
-
-  cuinsineType = e => {}
 
   loadRestaraunt = e => {
     e.preventDefault();
@@ -71,7 +79,34 @@ class Home extends Component {
     this.props.dispatch(getRestaraunts({ city: this.state.city }));
   };
 
+  filterResults = filter => () => {
+    this.setState({ filter });
+    const { restaraunts } = this.props;
+    if (restaraunts) {
+      return restaraunts.sort((a, b) => {
+        if (a[filter] > b[filter]) return 1;
+        if (a[filter] < b[filter]) return -1;
+        return 0;
+      });
+    }
+  }
+
   handleChange = e => this.setState({ city: e.target.value });
+
+  componentWillReceiveProps = ({ restaraunts }) => {
+    const { filter } = this.state;
+    if (restaraunts) {
+      if (filter) {
+        this.setState({
+          restaraunts: restaraunts.sort((a, b) => {
+            if (a[filter] > b[filter]) return 1;
+            if (a[filter] < b[filter]) return -1;
+            return 0;
+          })
+        });
+      }
+    }
+  }
 
   render() {
     const { restaraunts } = this.props;
@@ -90,10 +125,22 @@ class Home extends Component {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Cuisine</th>
-              <th>Price Level</th>
+              <THeader
+                text={'Name'}
+                onClick={this.filterResults('name')}
+              />
+              <THeader
+                text={'Address'}
+                onClick={this.filterResults('address')}
+              />
+              <THeader
+                text={'Cuisine'}
+                onClick={this.filterResults('cuisine_type')}
+              />
+              <THeader
+                text={'Price Level'}
+                onClick={this.filterResults('price')}
+              />
             </tr>
           </thead>
           <tbody>
@@ -114,8 +161,8 @@ class Home extends Component {
                 <td style={rowData}>
                   {res.address}, {res.city} {res.state}, {res.country}, {res.postal_code}
                 </td>
-                <td style={rowData}>{res.cuisine_type}</td>
-                <td style={rowDataEnd}>{res.price}</td>
+                <td style={rowDataCenter}>{res.cuisine_type}</td>
+                <td style={rowDataCenter}>{res.price}</td>
               </tr>
             ))
           }
