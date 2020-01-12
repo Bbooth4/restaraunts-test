@@ -2,42 +2,49 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getRestaraunts } from '../actions/restaraunts';
 
-const margin = { margin: '5rem' };
+const margin = { padding: '5rem', maxWidth: '100%' };
 
 const button = {
-  background: '#4286f4',
-  borderRadius: '0px 5px 5px 0px',
-  border: '1px solid #4286f4',
   color: '#fff',
   padding: '1rem',
   cursor: 'pointer',
-  marginBottom: '2rem'
+  marginBottom: '2rem',
+  background: '#4286f4',
+  border: '1px solid #4286f4',
+  borderRadius: '0px 5px 5px 0px'
 };
 
-const input = {
-  borderRadius: '5px 0px 0px 5px',
-  border: '1px solid #4286f4',
+const search = {
+  width: '100%',
   padding: '1rem',
   cursor: 'pointer',
   marginBottom: '2rem',
-  margin: '2rem 0rem 2rem 1rem'
+  border: '1px solid #4286f4',
+  margin: '2rem 0rem 2rem 1rem',
+  borderRadius: '5px 0px 0px 5px'
+};
+
+const form = {
+  width: '100%',
+  display: 'inline-flex',
+  alignItems: 'baseline'
 };
 
 const row = {
   color: '#fff',
-  background: '#80b3ff',
   borderRadius: 5,
-  borderBottom: '1px solid #80b3ff',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  background: '#80b3ff',
+  borderBottom: '1px solid #80b3ff'
 };
 
 const rowAlt = {
   color: '#fff',
-  background: '#4d94ff',
   borderRadius: 5,
-  border: '1px solid #4d94ff',
   cursor: 'pointer',
-  marginBottom: '2rem'
+  marginBottom: '2rem',
+  background: '#4d94ff',
+  border: '1px solid #4d94ff'
 };
 
 const rowData = { padding: '1rem' };
@@ -71,12 +78,14 @@ class Home extends Component {
     return (
       <div style={margin}>
         <form onSubmit={this.loadRestaraunt}>
-          <label style={label}>
-            City:
-            <input style={input} type="text" value={this.state.city} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" style={button} />
-          { this.props.loading && <span style={{paddingLeft: '1rem'}}>LOADING</span> }
+          <div style={form}>
+            <label style={label}>
+              City:
+            </label>
+            <input style={search} type="text" value={this.state.city} onChange={this.handleChange} />
+            <input type="submit" value="Submit" style={button} />
+            { this.props.loading && <span style={{paddingLeft: '1rem'}}>LOADING</span> }
+          </div>
         </form>
         <table>
           <thead>
