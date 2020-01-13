@@ -17,15 +17,15 @@ app.get("/cuisine", async (req, res) => {
     .then(res => {
       let cuisine = 'other';
       if (res) {
-        if (/apanese/.test(res.data)) cuisine = 'japanese';
-        else if (/ietnamese/.test(res.data)) cuisine = 'vietnamese';
-        else if (/hinese/.test(res.data)) cuisine = 'chinese';
-        else if (/talian/.test(res.data)) cuisine = 'italian';
-        else if (/rench/.test(res.data)) cuisine = 'french';
-        else if (/editerranean/.test(res.data)) cuisine = 'mediterranean';
-        else if (/ndian/.test(res.data)) cuisine = 'indian';
-        else if (/merican/.test(res.data)) cuisine = 'american';
-        else if (/thai/.test(res.data)) cuisine = 'thai';
+        if (/apanese/.test(res.data)) cuisine = 'Japanese';
+        else if (/ietnamese/.test(res.data)) cuisine = 'Vietnamese';
+        else if (/hinese/.test(res.data)) cuisine = 'Chinese';
+        else if (/talian/.test(res.data)) cuisine = 'Italian';
+        else if (/rench/.test(res.data)) cuisine = 'French';
+        else if (/editerranean/.test(res.data)) cuisine = 'Mediterranean';
+        else if (/ndian/.test(res.data)) cuisine = 'Indian';
+        else if (/merican/.test(res.data)) cuisine = 'American';
+        else if (/thai/.test(res.data)) cuisine = 'Thai';
         r(cuisine);
       } else r(cuisine);
     })
@@ -35,8 +35,9 @@ app.get("/cuisine", async (req, res) => {
     });
   });
 
-  result.then(resp => res.json(resp))
-  .catch(err => res.json({failure: 'failure'}));
+  result
+    .then(resp => res.json(resp))
+    .catch(err => res.json({failure: 'failure'}));
 });
 
 app.listen(PORT, () => console.log('Listening on port ' + PORT));
