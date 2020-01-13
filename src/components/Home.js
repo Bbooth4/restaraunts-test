@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { getRestaraunts } from '../actions/restaraunts';
 
@@ -60,6 +60,11 @@ const label = {
 
 const header = {
   cursor: 'pointer'
+};
+
+const popup = {
+  padding: '3rem',
+  poisition: 'absolute'
 };
 
 const THeader = ({ text, onClick }) => (
@@ -173,11 +178,9 @@ class Home extends Component {
   };
 };
 
-const mapStateToProps = state => {
-  return {
-    restaraunts: state.restaraunts.restaurants,
-    loading: state.loading.loading
-  };
-};
+const mapStateToProps = state => ({
+  loading: state.loading.loading,
+  restaraunts: state.restaraunts.restaurants
+});
 
 export default connect(mapStateToProps)(Home);
